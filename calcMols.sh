@@ -1,7 +1,7 @@
 if [ "$#" -ne 5 ]; then
     echo "Usage: $0 molarmass (in g/mol) density (kg/m3) length lx (m) ly (m) lz (m)" >&2
     echo " "
-    echo "Example: $0 18.01534 1000 10e-10 10e-10 10-e10"
+    echo "Example: $0 18.01534 1000 10e-10 10e-10 10e-10"
     echo "The above example will calculate number of molecules that \
 could fit a cubic volume of length 10e-10 m for water with \
 molar mass of 18.01534 g/mol and density of 1000 kg/m3"
