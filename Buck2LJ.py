@@ -1,5 +1,7 @@
 import numpy as np
 import sys
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
 
@@ -103,16 +105,15 @@ print ("Minmax of distance: x=%g (%s) y=%d (%s)" %(np.min(x_data), units['distan
 print ("LJ parameters (TC Lim): epsilon=%g (%s), sigma=%g (%s)" % (D, units['energy'], sigma, units['distance']))
 print ("                      : C_12=%g (%s.%s^12), C_6=%g (%s.%s^6)" % (D*R**12, units['energy'], units['distance'], 2*D*R**6, units['energy'], units['distance']))
 
+
 # And plot it
 plt.figure(figsize=(12, 8))
-
 plt.plot(x_data, y_data, 'r-', label="Bukcingham Pot.")
 plt.plot(x_data, U_B_Loose, 'g-', label="Bukcingham (Loose form) Pot.")
 plt.plot(x_data, U_LJ_Fit, 'b-', label="LJ Fitted Pot. (TC. Lim) C12=%g %s.%s^12, C6=%g %s.%s^6" % (D*R**12, units['energy'], units['distance'], 2*D*R**6, units['energy'], units['distance']))
 plt.plot(x_data, U_LJ_Fit_Jiawei, 'c-', label="LJ Fitted Pot. (Jiawei) C12=%g %s.%s^12, C6=%g %s.%s^6" % (C12, units['energy'], units['distance'], C6, units['energy'], units['distance']))
 
 #sys.exit()
-
 print ("Fitting range: min=%g (%s), max=%g (%s)" %(min_fit, units['distance'], max_fit, units['distance']))
 
 x_data_range=x_data[(x_data>min_fit) & (x_data<max_fit)]
@@ -152,3 +153,4 @@ axes = plt.gca()
 axes.set_ylim([-1*eng_conv,10*eng_conv])
 plt.legend()
 plt.show()
+plt.savefig('fittingCurve.png')
